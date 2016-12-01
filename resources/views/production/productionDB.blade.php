@@ -1,11 +1,15 @@
 @extends('layouts.master')
 @section('content')
+@php
+    $ip = request()->ip();
+@endphp
 <div class="row">
     <div class="col-sm-4 col-md-2">
         @include('production.sidebar')
     </div>
     <div class="col-sm-8 col-md-10">
         <div class="row">
+            <h3>您的IP為{{ $ip }}</h3>
             <form action="">
                 <div class="row">
                     <div class="col-lg-6">

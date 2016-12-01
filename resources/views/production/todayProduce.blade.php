@@ -10,7 +10,7 @@
     <div class="col-sm-8 col-md-10">
         <div class="row">
             <div class="col-md-10">
-                {{ $ip }}
+                <h3>您的IP為{{ $ip }}</h3>
                 <table class="table table-bordered .table-condensed">
                     <thead>
                         <tr>
