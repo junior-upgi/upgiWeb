@@ -66,7 +66,7 @@ var importGlass = new Vue({
         },
         
         searchGlassInfo: function () {
-            $.get( window.baseurl + "/production/getTodayImportGlassData/", function( results ) {
+            $.get( window.baseurl + "/production/getTodayImportGlassData", function( results ) {
                 console.log(results);
                 importGlass.glasses = results;
             }).fail(function(e){

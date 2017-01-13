@@ -65,7 +65,7 @@ var importToday = new Vue({
         },
         
         searchGlassInfo: function () {
-            $.get( window.baseurl + "/production/getTodayImportGlassInfo/", function( results ) {
+            $.get( window.baseurl + "/production/getTodayImportGlassInfo", function( results ) {
                 console.log(results);
                 importToday.glasses = results;
             }).fail(function(e){
