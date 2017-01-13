@@ -52,7 +52,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'sso' => \App\Http\middleware\SSOAuthenticate::class,
-        'ip' => \App\Http\middleware\IPAuthenticate::class,
+        'sso' => \App\Http\Middleware\SSOAuthenticate::class,
+        'ip' => \App\Http\Middleware\IPAuthenticate::class,
     ];
 }
