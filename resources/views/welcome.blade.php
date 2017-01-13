@@ -1,4 +1,7 @@
 @extends('layouts.master')
 @section('content')
-    <h1></h1>
+    <div id="test">
+        @{{ message }}
+    </div>
+    <script src="{{ url('js/production/test.js') }}"></script>
 @endsection

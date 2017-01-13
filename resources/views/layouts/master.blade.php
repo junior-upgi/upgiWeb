@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant-TW">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +8,22 @@
 	<title>統義玻璃行政資訊</title>
     <!-- Required Stylesheets -->
     <link href="{{ url('/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url('/css/fileinput.min.css') }}">
 
     <!-- Required Javascript -->
     <script src="{{ url('/script/jquery-3.1.0.min.js') }}"></script>
+	<script src="{{ url('/script/fileupload/plugins/canvas-to-blob.min.js') }}"></script>
+	<script src="{{ url('/script/fileupload/plugins/sortable.min.js') }}"></script>
+	<script src="{{ url('/script/fileupload/plugins/purify.min.js') }}"></script>
+	<script src="{{ url('/script/fileinput.min.js') }}"></script>
+	<script src="{{ url('/script/fileupload/themes/fa/theme.js') }}"></script>
+	<script src="{{ url('/script/fileupload/locales/zh-TW.js') }}"></script>
 	<script src="{{ url('/script/bootstrap.min.js') }}"></script>
+	<script src="{{ url('/script/jquery.form.min.js') }}"></script>
+	<script src="{{ url('/script/vue.js') }}"></script>
+	<script>
+		window.baseurl = "{{ url('/') }}"
+	</script>
 </head>
 <body style="padding-top: 70px;">
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,9 +81,10 @@
 	</nav>
 	
 	<div class="container">
-		<div class="content">
+		<div class="content" id="app">
 			@yield('content')
 		</div>
 	</div>
+	<!--<script src="{{ asset('js/app.js') }}"></script>-->
 </body>
 </html>

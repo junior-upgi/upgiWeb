@@ -15,6 +15,12 @@ require('./bootstrap');
 
 Vue.component('example', require('./components/Example.vue'));
 
+//Vue.component('productionInfo', require('./components/info.vue'));
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    
+    ready: function() {
+        console.log('Vue ready...');
+    }
 });
