@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('news');
+    //return view('news');
+    return Redirect::to('/production/today');
 });
 
 Route::get('/nav/{view}', function ($view) {

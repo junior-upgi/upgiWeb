@@ -43,7 +43,7 @@
 			<div class="collapse navbar-collapse" id="nav-bar">
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/nav/manage.laborLaw') }}">管理部</a></li>
-					<li><a href="{{ url('/nav/production.todayProduce') }}">生產部</a></li>
+					<li><a href="{{ url('/production/today') }}">生產部</a></li>
 					<li><a href="">環安室</a></li>
 					<!--
 					<li class="dropdown">
