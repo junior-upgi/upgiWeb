@@ -22,12 +22,8 @@ class TodayController extends Controller
     //
     public function today()
     {
-        request()->setTrustedProxies(['192.168.168.1']);
-
-        $ip = request()->getClientIp();
         return view('production.todayProduce')
-            ->with('auth', true)
-            ->with('ip', $ip);
+            ->with('auth', true);
     }
 
     //

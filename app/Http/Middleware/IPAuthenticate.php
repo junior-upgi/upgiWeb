@@ -19,8 +19,15 @@ class IPAuthenticate
     {
         $id = $request->input('user_id');
         $ip = $request->ip();
+        $class = explode(".", $ip);
+        $local = false;
+        if ($class[0] == '211' && $class[1] == '22' && $class[2] == '245') {
+            if ((int)$class[3] > 15 && (int)$class[3] < 32) {
+                $local = true;
+            }
+        }
         $domain = substr($ip, 0, 7);
-        if ($domain == '192.168') {
+        if ($domain == '192.168' || $local) {
             return $next($request);
         } else {
             if (isset($id)) {
