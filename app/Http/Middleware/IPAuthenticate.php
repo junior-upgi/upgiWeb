@@ -20,7 +20,7 @@ class IPAuthenticate
         $id = $request->input('user_id');
         $ip = $request->ip();
         $domain = substr($ip, 0, 7);
-        if ($domain == '192.111') {
+        if ($domain == '192.168') {
             return $next($request);
         } else {
             if (isset($id)) {
