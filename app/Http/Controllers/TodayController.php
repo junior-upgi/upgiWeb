@@ -24,7 +24,7 @@ class TodayController extends Controller
     {
         return view('production.todayProduce')
             ->with('auth', true)
-            ->with('ip', request()->getClientIp(true));
+            ->with('ip', request()->getClientIp());
     }
 
     //
