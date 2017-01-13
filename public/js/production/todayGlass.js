@@ -14,7 +14,7 @@ var todayGlass = new Vue({
 
     methods: {
         searchGlassInfo: function () {
-            $.get( window.baseurl + "/production/getTodayGlassInfo/", function( results ) {
+            $.get( window.baseurl + "//production/getTodayGlassInfo/", function( results ) {
                 console.log(results);
                 todayGlass.glasses = results;
                 var date = new Date(todayGlass.glasses[0]['date']);
