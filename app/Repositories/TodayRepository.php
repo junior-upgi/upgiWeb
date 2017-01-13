@@ -1,34 +1,54 @@
 <?php
+/**
+ * Today資料存取庫
+ *
+ * @version 1.0.0
+ * @author spark it@upgi.com.tw
+ * @date 17/01/13
+ * @since 1.0.0 spark: 於此版本開始編寫註解
+ */
 namespace App\Repositories;
 
-//
-use App\Models\GlassProduce;
 use App\Models\TodayGlassProduce;
-use Carbon\Carbon;
 
-//
+/**
+ * Class TodayRepository
+ *
+ * @package App\Repositories
+ */
 class TodayRepository
 {
-    //
+    /** 注入 Today Model */
     public $today;
-    //
-    private $carbon;
 
-    //
-    public function __construct(
-        TodayGlassProduce $today,
-        Carbon $carbon
-    ) {
+    /**
+     * 建構式
+     *
+     * @param  TodayGlassProduce $today
+     * @return void
+     */
+    public function __construct(TodayGlassProduce $today) 
+    {
         $this->today = $today;
-        $this->carbon = $carbon;
     }
 
+    /**
+     * 回傳最新上傳檔案時間
+     *
+     * @return string
+     */
     public function getTodayGlassNewestDate()
     {
         return $this->today->orderBy('date', 'desc')->first()->date;
     }
 
-    //
+    /**
+     * 依傳入日期，回傳今日生產資訊
+     * 以 1-1 線別優先排序
+     *
+     * @param string $date
+     * @return Model
+     */
     public function getTodayGlassByDate($date)
     {
         return $this->today
@@ -36,33 +56,17 @@ class TodayRepository
             ->orderByRaw("CASE WHEN line = '1-1' THEN 0 ELSE line END");
     }
 
-    //
-    public function getTodayImportGlass()
-    {
-        return $this->today
-            ->where('date', $this->carbon->today())
-            ->orderByRaw("CASE WHEN line = '1-1' THEN 0 ELSE line END");
-    }
-
-    //
+    /**
+     * 寫入今日生產資訊
+     *
+     * @param Array $data
+     * @return Array
+     */
     public function insertToday($data)
     {
         try {
             $this->today->getConnection()->beginTransaction();
-            foreach ($data as $item) {
-                $this->today->insert([
-                    'line' => iconv('utf8', 'big5', $item[0]),
-                    'glassNumber' => iconv('utf8', 'big5', $item[1]),
-                    'weight' => iconv('utf8', 'big5', $item[2]),
-                    'speed' => iconv('utf8', 'big5', $item[3]),
-                    'quantity' => iconv('utf8', 'big5', $item[4]),
-                    'nextNumber' => iconv('utf8', 'big5', $item[5]),
-                    'change' => iconv('utf8', 'big5', $item[6]),
-                    'testNumber' => iconv('utf8', 'big5', $item[7]),
-                    'date' => $this->carbon->today(),
-                    'created_at' => $this->carbon->now()
-                ]);
-            }
+            $this->glass->insert($data);
             $this->today->getConnection()->commit();
             return ['success' => true];
         } catch (\Exception $e) {

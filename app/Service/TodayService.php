@@ -8,37 +8,36 @@
  * @since 1.0.0 spark: 於此版本開始編寫註解
  */
 namespace App\Service;
-//
+
 use App\Service\ExcelService;
-//
 use App\Repositories\TodayRepository;
-//
-use \Carbon\Carbon;
 
 /**
- * Class ProduceService
+ * Class TodayService
  *
  * @package App\Service
  */
 class TodayService
 {
-    //
+    /** 注入 TodayRepository */
     private $today;
     
-    //
+    /** 注入 ExcelService */
     private $excel;
 
-    //
-    private $carbon;
-
+    /**
+     * 建構式
+     *
+     * @param  TodayGlassProduce $today
+     * @param  ExcelService $excel
+     * @return void
+     */
     public function __construct(
         TodayRepository $today,
-        ExcelService $excel,
-        Carbon $carbon
+        ExcelService $excel
     ) {
         $this->today = $today;
         $this->excel = $excel;
-        $this->carbon = $carbon;
     }
 
     /**
@@ -49,21 +48,31 @@ class TodayService
      */
     public function importToday($data)
     {
-        $table = $this->excel->getTableArray($data, 1);
-        $ref = ['線別', '瓶號', '重量', '機速', '引出量', '下支瓶號', '預計換模時間', '試模瓶號', null];
-        if ($table[0] != $ref) {
+        $table = $this->excel->getTodayArray($data, 1);
+        //$ref = ['線別', '瓶號', '重量', '機速', '引出量', '下支瓶號', '預計換模時間', '試模瓶號', null];
+        if (count($table[0]) != 11) {
             return ['success' => false, '上傳檔案㯗位格式錯誤!'];
         }
         return $this->today->insertToday(array_slice($table,1));
     }
 
+    /**
+     * 取得並回傳最新上傳生產資訊
+     *
+     * @return Array
+     */
     public function getTodayNewest()
     {
         return $this->today->getTodayGlassByDate($this->today->getTodayGlassNewestDate())->get()->toArray();
     }
 
+    /**
+     * 取得並回傳今日上傳生產資訊
+     *
+     * @return Array
+     */
     public function getTodayDataImport()
     {
-        return $this->today->getTodayGlassByDate($this->carbon->today())->get()->toArray();
+        return $this->today->getTodayGlassByDate(\Carbon\Carbon::today())->get()->toArray();
     }
 }

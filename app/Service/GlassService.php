@@ -42,23 +42,39 @@ class GlassService
         $this->carbon = $carbon;
     }
 
-    //
+    /**
+     * 取得並回傳今日上傳瓶號生產資料
+     *
+     * @param string $data
+     * @return Array
+     */
     public function importGlass($data)
     {
-        $table = $this->excel->getTableArray($data, 0);
-        $ref = ['線別', '瓶號', '機速', '重量', '數量(萬)', '良率(％)', '下線日期', '備註'];
-        if ($table[0] != $ref) {
+        $table = $this->excel->getGlassArray($data, 0);
+        //$ref = ['線別', '瓶號', '機速', '重量', '數量(萬)', '良率(％)', '下線日期', '備註'];
+        if (count($table[0]) != 10) {
             return ['success' => false, '上傳檔案㯗位格式錯誤!'];
         }
         return $this->glass->insertGlassData(array_slice($table,1));
     }
 
-    //
+    /**
+     * 依搜尋條件回傳瓶號生產資料
+     *
+     * @param string $data
+     * @return Array
+     */
     public function getGlass($search)
     {
-        return $this->glass->getGlass($search)->get();
+        return $this->glass->getGlass($search)->get()->toArray();
     }
 
+    /**
+     * 取得並回傳今日上傳瓶號生產資料
+     *
+     * @param string $data
+     * @return Array
+     */
     public function getTodayImportGlassData()
     {
         return $this->glass->getTodayImportGlassData()->get()->toArray();
