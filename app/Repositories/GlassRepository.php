@@ -52,7 +52,7 @@ class GlassRepository
      *
      * @return Model
      */
-    public function getTodayImportGlassData()
+    public function getTodayImportData()
     {
         return $this->glass
             ->where('date', \Carbon\Carbon::today())

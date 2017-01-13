@@ -33,11 +33,11 @@ class TodayRepository
     }
 
     /**
-     * 回傳最新上傳檔案時間
+     * 回傳最新上傳檔案日期
      *
      * @return string
      */
-    public function getTodayGlassNewestDate()
+    public function getNewestDate()
     {
         return $this->today->orderBy('date', 'desc')->first()->date;
     }
@@ -49,7 +49,7 @@ class TodayRepository
      * @param string $date
      * @return Model
      */
-    public function getTodayGlassByDate($date)
+    public function getProductionInfo($date)
     {
         return $this->today
             ->where('date', $date)
@@ -62,7 +62,7 @@ class TodayRepository
      * @param Array $data
      * @return Array
      */
-    public function insertToday($data)
+    public function insertProductionInfo($data)
     {
         try {
             $this->today->getConnection()->beginTransaction();

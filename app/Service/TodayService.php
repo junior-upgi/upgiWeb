@@ -46,14 +46,14 @@ class TodayService
      * @param  Illuminate\Http\UploadedFile $data
      * @return array
      */
-    public function importToday($data)
+    public function importProductionInfo($data)
     {
         $table = $this->excel->getTodayArray($data, 1);
         //$ref = ['線別', '瓶號', '重量', '機速', '引出量', '下支瓶號', '預計換模時間', '試模瓶號', null];
         if (count($table[0]) != 11) {
             return ['success' => false, '上傳檔案㯗位格式錯誤!'];
         }
-        return $this->today->insertToday(array_slice($table,1));
+        return $this->today->insertProductionInfo(array_slice($table,1));
     }
 
     /**
@@ -61,9 +61,10 @@ class TodayService
      *
      * @return Array
      */
-    public function getTodayNewest()
+    public function getNewestProductionInfo()
     {
-        return $this->today->getTodayGlassByDate($this->today->getTodayGlassNewestDate())->get()->toArray();
+        $newest = $this->today->getNewestDate();
+        return $this->today->getProductionInfo($newest)->get()->toArray();
     }
 
     /**
@@ -71,8 +72,8 @@ class TodayService
      *
      * @return Array
      */
-    public function getTodayDataImport()
+    public function getTodayImportInfo()
     {
-        return $this->today->getTodayGlassByDate(\Carbon\Carbon::today())->get()->toArray();
+        return $this->today->getProductionInfo(\Carbon\Carbon::today())->get()->toArray();
     }
 }

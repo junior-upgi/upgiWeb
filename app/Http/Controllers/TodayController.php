@@ -36,17 +36,17 @@ class TodayController
     //
     public function importTodayData()
     {
-        return $this->today->importToday(request()->file('todayFile'));
+        return $this->today->importProductionInfo(request()->file('todayFile'));
     }
 
-    // *
+    //
     public function getTodayGlassProduction()
     {
-        return $this->today->getTodayNewest();
+        return $this->today->getNewestProductionInfo();
     }
 
     public function getTodayImportGlassProduction()
     {
-        return $this->today->getTodayDataImport();
+        return $this->today->getTodayImportInfo();
     }
 }

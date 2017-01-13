@@ -8,38 +8,37 @@
  * @since 1.0.0 spark: 於此版本開始編寫註解
  */
 namespace App\Service;
-//
+
 use App\Service\ExcelService;
-//
 use App\Repositories\GlassRepository;
-//
 use \Carbon\Carbon;
 
 /**
- * Class ProduceService
+ * Class GlassService
  *
  * @package App\Service
  */
 class GlassService
 {
-    //
+    /** 注入 GlassRepository */
     private $glass;
     
-    //
+    /** 注入 ExcelService */
     private $excel;
 
-    //
-    private $carbon;
-
-    //
+    /**
+     * 建構式
+     *
+     * @param  GlassProduce $today
+     * @param  ExcelService $excel
+     * @return void
+     */
     public function __construct(
         GlassRepository $glass,
-        ExcelService $excel,
-        Carbon $carbon
+        ExcelService $excel
     ) {
         $this->glass = $glass;
         $this->excel = $excel;
-        $this->carbon = $carbon;
     }
 
     /**
@@ -77,6 +76,6 @@ class GlassService
      */
     public function getTodayImportGlassData()
     {
-        return $this->glass->getTodayImportGlassData()->get()->toArray();
+        return $this->glass->getTodayImportData()->get()->toArray();
     }
 }
