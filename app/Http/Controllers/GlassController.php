@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Service\GlassService;
 
 //
-class GlassController
+class GlassController extends Controller
 {
     private $glass;
 

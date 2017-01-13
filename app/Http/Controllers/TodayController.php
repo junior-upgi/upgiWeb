@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Service\TodayService;
 
 //
-class TodayController
+class TodayController extends Controller
 {
     //
     private $today;
@@ -23,7 +23,8 @@ class TodayController
     public function today()
     {
         return view('production.todayProduce')
-            ->with('auth', true);
+            ->with('auth', true)
+            ->with('ip', request()->getClientIp(true));
     }
 
     //
