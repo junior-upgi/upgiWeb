@@ -2,7 +2,7 @@
     <a class="list-group-item" href="{{ url('/production/today') }}">當日生產線一覽</a>
     <a class="list-group-item" href="{{ url('/production/info') }}">瓶號生產資料庫</a>
     @php
-        $set = ['192.168.10.1', '192.168.168.41', '192.168.168.50'];
+        $set = ['192.168.10.1', '192.168.168.41', '192.168.168.40', '192.168.168.50'];
         $auth = false;
         foreach ($set as $s) {
             if (request()->ip() == $s) {
