@@ -68,10 +68,18 @@ class ExcelService
         $count = count($keys) - 2;
         if ($data == null || count($data) < 2 || count($data[0]) != $count) {
             return null;
-        } 
+        }
         return $this->setArray($data, $keys);
     }
 
+    //
+    public function setBig5($list)
+    {
+        for($i = 0; $i < count($list); $i++) {
+            $list[$i] = mb_convert_encoding($list[$i], "big5", "utf-8");
+        }
+        return $list;
+    }
     //
     public function setArray($data, $keys)
     {
@@ -82,9 +90,10 @@ class ExcelService
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);
-            $combine = array_combine($keys, $list);
+            $combine = array_combine($keys, $this->setBig5($list));
             array_push($array, $combine);
         }
+        $a = $array;
         return $array;
     }
 }
