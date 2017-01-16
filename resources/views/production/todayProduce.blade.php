@@ -41,6 +41,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <h3 v-if="quantity > 0">總引出量：<span>@{{ quantity }}</span></h3>
                 @else
                     <h3>您現在不在公司範圍內，無法取得資訊!</h3>
                 @endif
@@ -48,5 +49,5 @@
         </div>
     </div>
 </div>
-<script src="{{ url('js/production/todayGlass.js?v=3') }}"></script>
+<script src="{{ url('js/production/todayGlass.js?v=4') }}"></script>
 @endsection

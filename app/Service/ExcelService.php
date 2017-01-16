@@ -93,7 +93,6 @@ class ExcelService
             $combine = array_combine($keys, $this->setBig5($list));
             array_push($array, $combine);
         }
-        $a = $array;
         return $array;
     }
 }
