@@ -20,6 +20,10 @@ Route::get('/nav/{view}', function ($view) {
     return view($view);
 });
 
+Route::get('getip', function () {
+    return request()->ip();
+});
+
 Route::group(['prefix' => 'production'], function () {
     Route::get('/getTodayGlassInfo', 'TodayController@getTodayGlassProduction');
     Route::get('/getTodayImportGlassInfo', 'TodayController@getTodayImportGlassProduction');
