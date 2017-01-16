@@ -86,7 +86,7 @@ class ExcelService
         $array = [];
         $today = \Carbon\Carbon::today();
         $now = \Carbon\Carbon::now();
-        array_slice($data,1);
+        $data = array_slice($data,1);
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);
