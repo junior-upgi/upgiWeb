@@ -5,7 +5,7 @@
         @include('production.sidebar')
     </div>
     <div class="col-sm-8 col-md-10" id="importToday">
-        <h3 style="margin: 0;">當日生產資料管理</h3><h6><small>您的IP為{{ request()->ip() }}</small></h6>
+        <h3 style="margin: 0;">當日生產資料管理</h3><!--<h6><small>您的IP為{{ request()->ip() }}</small></h6>-->
         @if (isset($auth))
             <div class="row">
                 <div class="">
@@ -59,5 +59,5 @@
         @endif
     </div>
 </div>
-<script src="{{ url('js/production/importToday.js?v=4') }}"></script>
+<script src="{{ url('js/production/importToday.js?v=6') }}"></script>
 @endsection

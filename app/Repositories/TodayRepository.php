@@ -66,7 +66,7 @@ class TodayRepository
     {
         try {
             $this->today->getConnection()->beginTransaction();
-            $this->glass->insert($data);
+            $this->today->insert($data);
             $this->today->getConnection()->commit();
             return ['success' => true];
         } catch (\Exception $e) {

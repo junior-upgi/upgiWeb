@@ -42,17 +42,9 @@ class ExcelService
     public function getTodayArray($file, $sheet)
     {
         $data = $this->getTableArray($file, $sheet);
-        $keys = ['line', 'glassNumber', 'weight', 'speed', 'quantity', 'nextNumber', 'change', 'testNumber', 'date', 'created_at'];
-        $array = [];
-        $today = \Carbon\Carbon::today();
-        $now = \Carbon\Carbon::now();
-        foreach ($data as $list) {
-            array_push($list, $today);
-            array_push($list, $now);
-            $combine = array_combine($keys, $list);
-            array_push($array, $combine);
-        }
-        return $array;
+        $keys = ['line', 'glassNumber', 'weight', 'speed', 'quantity', 
+            'nextNumber', 'change', 'testNumber', 'date', 'created_at'];
+        return $this->checkArray($data, $keys);
     }
 
     /**
@@ -65,10 +57,28 @@ class ExcelService
     public function getGlassArray($file, $sheet)
     {
         $data = $this->getTableArray($file, $sheet);
-        $keys = ['line', 'glassNumber', 'speed', 'weight', 'quantity', 'yield', 'offline', 'remark', 'date', 'created_at'];
+        $keys = ['line', 'glassNumber', 'speed', 'weight', 'quantity', 
+            'yield', 'offline', 'remark', 'date', 'created_at'];
+        return $this->checkArray($data, $keys);
+    }
+
+    //
+    public function checkArray($data, $keys)
+    {
+        $count = count($keys) - 2;
+        if ($data == null || count($data) < 2 || count($data[0]) != $count) {
+            return null;
+        } 
+        return $this->setArray($data, $keys);
+    }
+
+    //
+    public function setArray($data, $keys)
+    {
         $array = [];
         $today = \Carbon\Carbon::today();
         $now = \Carbon\Carbon::now();
+        array_slice($data,1);
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);

@@ -50,10 +50,10 @@ class TodayService
     {
         $table = $this->excel->getTodayArray($data, 1);
         //$ref = ['線別', '瓶號', '重量', '機速', '引出量', '下支瓶號', '預計換模時間', '試模瓶號', null];
-        if (count($table[0]) != 11) {
-            return ['success' => false, '上傳檔案㯗位格式錯誤!'];
+        if ($table == null) {
+            return ['success' => false, 'msg' => '上傳檔案格式錯誤!'];
         }
-        return $this->today->insertProductionInfo(array_slice($table,1));
+        return $this->today->insertProductionInfo($table);
     }
 
     /**

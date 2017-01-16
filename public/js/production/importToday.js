@@ -52,8 +52,7 @@ var importToday = new Vue({
                     $('#todayFile').fileinput('clear');
                 },
                 error: function (res) {
-                    console.log(res);
-                    console.log('no');
+                    alert('上傳發生異常錯誤!請確認格式是否正確!');
                     $('#BtnUpload').button('reset');
                 }
             });
