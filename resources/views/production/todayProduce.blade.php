@@ -9,7 +9,7 @@
             <div class="col-md-10">
                 <h3 style="margin: 0;">當日生產線一覽</h3>
                 <div class="pull-left">
-                    <!--<h6><small>您的IP為{{ request()->ip() }}</small></h6>-->
+                    <h6><small>您的IP為{{ request()->ip() }}</small></h6>
                 </div>
                 <div class="pull-right">
                     <h6 v-if="date != null">資料更新日期：@{{ date }}</h6>

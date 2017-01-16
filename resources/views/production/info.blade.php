@@ -5,7 +5,7 @@
         @include('production.sidebar')
     </div>
     <div class="col-sm-8 col-md-10" id="glass">
-        <h3 style="margin: 0;">瓶號生產資料庫</h3><!--<h6><small>您的IP為{{ request()->ip() }}</small></h6>-->
+        <h3 style="margin: 0;">瓶號生產資料庫</h3><h6><small>您的IP為{{ request()->ip() }}</small></h6>
         @if (isset($auth))
             <div class="row">
                 <div class="col-lg-6">
