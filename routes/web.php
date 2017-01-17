@@ -16,6 +16,10 @@ Route::get('/', function () {
     //return Redirect::to('/production/today');
 });
 
+Route::get('/date', function () {
+    return \Carbon\Carbon::now();
+});
+
 Route::get('/nav/{view}', function ($view) {
     return view($view);
 });
