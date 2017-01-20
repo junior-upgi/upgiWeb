@@ -12,6 +12,8 @@ namespace App\Service;
 
 use Excel;
 
+use App\Service\Big5Service;
+
 /**
  * Class ExcelService
  *
@@ -19,6 +21,7 @@ use Excel;
  */
 class ExcelService
 {
+    use Big5Service;
     /**
      * 將上傳的excel資料轉成array回傳
      *
@@ -71,15 +74,7 @@ class ExcelService
         }
         return $this->setArray($data, $keys);
     }
-
-    //
-    public function setBig5($list)
-    {
-        for($i = 0; $i < count($list); $i++) {
-            $list[$i] = mb_convert_encoding($list[$i], "big5", "utf-8");
-        }
-        return $list;
-    }
+    
     //
     public function setArray($data, $keys)
     {
@@ -90,7 +85,7 @@ class ExcelService
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);
-            $combine = array_combine($keys, $this->setBig5($list));
+            $combine = array_combine($keys, $this->arrayToBig5($list));
             array_push($array, $combine);
         }
         return $array;

@@ -25,9 +25,9 @@
                         <td>瓶號</td>
                         <td>重量</td>
                         <td>機速</td>
-                        <td>引出量</td>
-                        <td>下支瓶號</td>
-                        <td>預計換模時間</td>
+                        <td>生產數量(萬)</td>
+                        <td>生產良率(%)</td>
+                        <td>下線日期</td>
                         <td>試模瓶號</td>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                         <td>@{{ glass.speed }}</td>
                         <td>@{{ glass.quantity }}</td>
                         <td>@{{ glass.yield }}</td>
-                        <td>@{{ glass.offline }}</td>
+                        <td>@{{ formatDate(glass.offline) }}</td>
                         <td>@{{ glass.remark }}</td>
                     </tr>
                 </tbody>
@@ -49,5 +49,5 @@
         @endif
     </div>
 </div>
-<script src="{{ url('js/production/info.js?v=2') }}"></script>
+<script src="{{ url('js/production/info.js?v=3') }}"></script>
 @endsection

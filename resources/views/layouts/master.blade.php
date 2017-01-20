@@ -21,6 +21,7 @@
 	<script src="{{ url('/script/bootstrap.min.js') }}"></script>
 	<script src="{{ url('/script/jquery.form.min.js') }}"></script>
 	<script src="{{ url('/script/vue.js') }}"></script>
+	<script src="{{ url('/script/moment-with-locales.min.js') }}"></script>
 	<script>
 		window.baseurl = "{{ url('/') }}"
 	</script>

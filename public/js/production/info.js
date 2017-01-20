@@ -23,5 +23,8 @@ var glass = new Vue({
                 console.log( e );
             });
         },
+        formatDate: function (date) {
+            return moment(date, "YYYY-MM-DD").format("YYYY-MM-DD")
+        }
     }
 });   

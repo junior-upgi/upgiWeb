@@ -49,7 +49,7 @@ class TodayService
     public function importProductionInfo($data)
     {
         $table = $this->excel->getTodayArray($data, 1);
-        //$ref = ['線別', '瓶號', '重量', '機速', '引出量', '下支瓶號', '預計換模時間', '試模瓶號', null];
+        //$ref = ['線別', '瓶號', '重量', '機速', '引出量', '下支瓶號', '預計換模時間', '試模瓶號'];
         if ($table == null) {
             return ['success' => false, 'msg' => '上傳檔案格式錯誤!'];
         }
