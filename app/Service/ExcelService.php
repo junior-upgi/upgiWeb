@@ -47,7 +47,7 @@ class ExcelService
         $data = $this->getTableArray($file, $sheet);
         $keys = ['line', 'glassNumber', 'weight', 'speed', 'quantity', 
             'nextNumber', 'change', 'testNumber', 'date', 'created_at'];
-        return $this->checkArray($data, $keys);
+        return $this->checkTodayArray($data, $keys);
     }
 
     /**
@@ -74,6 +74,41 @@ class ExcelService
         }
         return $this->setArray($data, $keys);
     }
+
+    public function checkTodayArray($data, $keys)
+    {
+        $count = count($keys) - 2;
+        if ($data == null || count($data) < 2 || count($data[0]) != $count) {
+            return null;
+        }
+        return $this->setTodayArray($data, $keys);
+    }
+
+    public function setTodayArray($data, $keys)
+    {
+        $array = [];
+        $today = \Carbon\Carbon::today();
+        $now = \Carbon\Carbon::now();
+        $data = array_slice($data,1);
+        foreach ($data as $list) {
+            array_push($list, $today);
+            array_push($list, $now);
+            $a = $this->setTodayQuantity($list[4]);
+            $list[4] = $this->setTodayQuantity($list[4]);
+            $combine = array_combine($keys, $this->arrayToBig5($list));
+            array_push($array, $combine);
+        }
+        return $array;
+    }
+
+    private function setTodayQuantity($value)
+    {
+        $val = number_format($value, 1);
+        if (strchr($val, '.') == '.0') {
+            return substr($val, 0, strlen($val) -2);
+        }
+        return $val;
+    } 
     
     //
     public function setArray($data, $keys)

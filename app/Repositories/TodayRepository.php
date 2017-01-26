@@ -59,8 +59,8 @@ class TodayRepository
     /**
      * 寫入今日生產資訊
      *
-     * @param Array $data
-     * @return Array
+     * @param $data
+     * @return array
      */
     public function insertProductionInfo($data)
     {

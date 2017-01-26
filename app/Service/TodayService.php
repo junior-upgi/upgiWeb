@@ -11,6 +11,7 @@ namespace App\Service;
 
 use App\Service\ExcelService;
 use App\Repositories\TodayRepository;
+use Carbon\Carbon;
 
 /**
  * Class TodayService
@@ -28,9 +29,8 @@ class TodayService
     /**
      * 建構式
      *
-     * @param  TodayGlassProduce $today
+     * @param TodayRepository $today
      * @param  ExcelService $excel
-     * @return void
      */
     public function __construct(
         TodayRepository $today,
@@ -41,10 +41,8 @@ class TodayService
     }
 
     /**
-     * 取得上傳資料並進行格式判斷與寫入
-     *
-     * @param  Illuminate\Http\UploadedFile $data
-     * @return array
+     * @param $data
+     * @return \App\Repositories\array|array
      */
     public function importProductionInfo($data)
     {
@@ -59,7 +57,7 @@ class TodayService
     /**
      * 取得並回傳最新上傳生產資訊
      *
-     * @return Array
+     * @return array
      */
     public function getNewestProductionInfo()
     {
@@ -70,10 +68,10 @@ class TodayService
     /**
      * 取得並回傳今日上傳生產資訊
      *
-     * @return Array
+     * @return array
      */
     public function getTodayImportInfo()
     {
-        return $this->today->getProductionInfo(\Carbon\Carbon::today())->get()->toArray();
+        return $this->today->getProductionInfo(Carbon::today())->get()->toArray();
     }
 }
