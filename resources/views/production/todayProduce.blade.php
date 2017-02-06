@@ -49,5 +49,5 @@
         </div>
     </div>
 </div>
-<script src="{{ url('js/production/todayGlass.js?v=4') }}"></script>
+<script src="{{ url('js/production/todayGlass.js?v=5') }}"></script>
 @endsection
