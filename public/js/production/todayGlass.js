@@ -6,7 +6,7 @@ var todayGlass = new Vue({
         glasses: {},
         search: null,
         date: null,
-        quantity: null,
+        quantity: null
     },
 
     mounted: function () {
@@ -28,11 +28,11 @@ var todayGlass = new Vue({
 
         sumQuantity: function () {
             var sum = 0;
-            for (i = 0; i < todayGlass.glasses.length; i++) {
+            for (var i = 0; i < todayGlass.glasses.length; i++) {
                 var value = parseFloat(todayGlass.glasses[i]['quantity']);
                 console.log(i + ": " + value);
                 if (value > 0) {
-                    sum += value;
+                    sum = parseFloat((sum + value).toFixed(1));
                 }
             }
             todayGlass.quantity = sum;
