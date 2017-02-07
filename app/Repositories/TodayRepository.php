@@ -53,6 +53,7 @@ class TodayRepository
     {
         return $this->today
             ->where('date', $date)
+            ->where('deleted_at', '<>', null)
             ->orderByRaw("CASE WHEN line = '1-1' THEN 0 ELSE line END");
     }
 
