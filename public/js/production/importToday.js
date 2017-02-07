@@ -46,7 +46,7 @@ var importToday = new Vue({
                     if (res['success']) {
                         alert('上傳資料成功!');
                     } else {
-                        alert('上傳資料失敗!')
+                        alert(res['msg']);
                     }
                     $('#BtnUpload').button('reset');
                     $('#todayFile').fileinput('clear');

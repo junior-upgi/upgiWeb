@@ -10,6 +10,7 @@
  */
 namespace App\Service;
 
+use Carbon\Carbon;
 use Excel;
 
 use App\Service\Big5Service;
@@ -87,13 +88,12 @@ class ExcelService
     public function setTodayArray($data, $keys)
     {
         $array = [];
-        $today = \Carbon\Carbon::today();
-        $now = \Carbon\Carbon::now();
+        $today = Carbon::today();
+        $now = Carbon::now();
         $data = array_slice($data,1);
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);
-            $a = $this->setTodayQuantity($list[4]);
             $list[4] = $this->setTodayQuantity($list[4]);
             $combine = array_combine($keys, $this->arrayToBig5($list));
             array_push($array, $combine);
@@ -114,8 +114,8 @@ class ExcelService
     public function setArray($data, $keys)
     {
         $array = [];
-        $today = \Carbon\Carbon::today();
-        $now = \Carbon\Carbon::now();
+        $today = Carbon::today();
+        $now = Carbon::now();
         $data = array_slice($data,1);
         foreach ($data as $list) {
             array_push($list, $today);

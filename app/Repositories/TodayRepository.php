@@ -10,6 +10,7 @@
 namespace App\Repositories;
 
 use App\Models\TodayGlassProduce;
+use Carbon\Carbon;
 
 /**
  * Class TodayRepository
@@ -67,6 +68,7 @@ class TodayRepository
     {
         try {
             $this->today->getConnection()->beginTransaction();
+            $this->today->where('date', Carbon::today())->delete();
             $this->today->insert($data);
             $this->today->getConnection()->commit();
             return ['success' => true];
