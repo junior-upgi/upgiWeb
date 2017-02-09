@@ -39,7 +39,7 @@
                         <td>@{{ glass.speed }}</td>
                         <td>@{{ glass.quantity }}</td>
                         <td>@{{ glass.yield }}</td>
-                        <td>@{{ formatDate(glass.offline) }}</td>
+                        <td>@{{ glass.offline }}</td>
                         <td>@{{ glass.remark }}</td>
                     </tr>
                 </tbody>

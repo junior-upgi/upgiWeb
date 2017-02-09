@@ -103,6 +103,9 @@ class ExcelService
 
     private function setTodayQuantity($value)
     {
+        if (!is_numeric($value)) {
+            return $value;
+        }
         $val = number_format($value, 1);
         if (strchr($val, '.') == '.0') {
             return substr($val, 0, strlen($val) -2);
@@ -120,8 +123,8 @@ class ExcelService
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);
-            $list[4] = (string) $list[4];
-            $list[5] = (string) $list[5];
+            $list[4] = $this->setTodayQuantity($list[4]);
+            $list[5] = $this->setTodayQuantity($list[5]);
             $combine = array_combine($keys, $this->arrayToBig5($list));
             array_push($array, $combine);
         }
