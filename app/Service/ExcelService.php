@@ -120,9 +120,8 @@ class ExcelService
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);
-            $list[3] = $this->setTodayQuantity($list[3]);
-            $list[4] = $this->setTodayQuantity($list[4]);
-            $list[5] = $this->setTodayQuantity($list[5]);
+            $list[4] = (string) $list[4];
+            $list[5] = (string) $list[5];
             $combine = array_combine($keys, $this->arrayToBig5($list));
             array_push($array, $combine);
         }

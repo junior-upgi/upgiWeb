@@ -69,7 +69,9 @@ class GlassRepository
     {
         try {
             $this->glass->getConnection()->beginTransaction();
-            $this->glass->insert($data);
+            for ($i = 0; $i < count($data); $i++) {
+                $this->glass->insert($data[$i]);
+            }
             $this->glass->getConnection()->commit();
             return ['success' => true];
         } catch (\Exception $e) {
