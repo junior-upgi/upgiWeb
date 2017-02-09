@@ -18,7 +18,7 @@ var glass = new Vue({
                 this.glasses = {};
                 return;
             }
-            this.searching = 'searching...';
+            this.searching = '資訊搜尋中...';
             $.get( window.baseurl + "/production/glassInfo/" + this.search, function( results ) {
                 glass.glasses = results;
                 glass.searching = '';
