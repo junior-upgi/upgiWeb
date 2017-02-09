@@ -44,11 +44,12 @@
                     </tr>
                 </tbody>
             </table>
-            <div v-if="search && glasses.length == 0">目前沒有此瓶號的生產資訊!</div>
+            @{{ searching }}
+            <div v-if="search && glasses.length == 0 && searching == ''">目前沒有此瓶號的生產資訊!</div>
         @else
             <h3>您現在不在公司範圍內，無法取得資訊!</h3>
         @endif
     </div>
 </div>
-<script src="{{ url('js/production/info.js?v=3') }}"></script>
+<script src="{{ url('js/production/info.js?v=4') }}"></script>
 @endsection

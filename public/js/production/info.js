@@ -4,7 +4,8 @@ var glass = new Vue({
         ip: null,
         auth: false,
         glasses: {},
-        search: ''
+        search: '',
+        searching: ''
     },
 
     mounted: function () {
@@ -17,8 +18,10 @@ var glass = new Vue({
                 this.glasses = {};
                 return;
             }
+            this.searching = 'searching...';
             $.get( window.baseurl + "/production/glassInfo/" + this.search, function( results ) {
                 glass.glasses = results;
+                glass.searching = '';
             }).fail(function(e){
                 console.log( e );
             });
