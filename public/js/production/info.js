@@ -4,7 +4,7 @@ var glass = new Vue({
         ip: null,
         auth: false,
         glasses: {},
-        search: null,
+        search: ''
     },
 
     mounted: function () {

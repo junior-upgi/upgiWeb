@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group">
-                    <input type="text" v-model="search" @keyup.enter="searchGlassInfo()" class="form-control" placeholder="請輸入瓶號">
+                    <input type="text" v-model="search" id="search" @keyup.enter="searchGlassInfo()" class="form-control" placeholder="請輸入瓶號">
                     <span class="input-group-btn">
                         <button @click="searchGlassInfo()" class="btn btn-default" type="button">搜尋</button>
                     </span>
@@ -44,6 +44,7 @@
                     </tr>
                 </tbody>
             </table>
+            <div v-if="search && glasses.length == 0">目前沒有此瓶號的生產資訊!</div>
         @else
             <h3>您現在不在公司範圍內，無法取得資訊!</h3>
         @endif
