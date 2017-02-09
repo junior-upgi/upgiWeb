@@ -29,9 +29,9 @@ class GlassService
     /**
      * 建構式
      *
-     * @param  GlassProduce $today
+     * @param GlassRepository $glass
      * @param  ExcelService $excel
-     * @return void
+     * @internal param GlassProduce $today
      */
     public function __construct(
         GlassRepository $glass,
@@ -44,8 +44,8 @@ class GlassService
     /**
      * 取得並回傳今日上傳瓶號生產資料
      *
-     * @param string $data
-     * @return Array
+     * @param $data
+     * @return \App\Repositories\array|array
      */
     public function importGlass($data)
     {
@@ -60,8 +60,9 @@ class GlassService
     /**
      * 依搜尋條件回傳瓶號生產資料
      *
-     * @param string $data
-     * @return Array
+     * @param $search
+     * @return \App\Repositories\array|array
+     * @internal param string $data
      */
     public function getGlass($search)
     {
@@ -70,9 +71,8 @@ class GlassService
 
     /**
      * 取得並回傳今日上傳瓶號生產資料
-     *
-     * @param string $data
-     * @return Array
+     * @return array
+     * @internal param string $data
      */
     public function getTodayImportGlassData()
     {

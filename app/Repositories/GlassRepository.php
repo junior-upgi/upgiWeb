@@ -10,6 +10,7 @@
 namespace App\Repositories;
 
 use App\Models\GlassProduce;
+use Carbon\Carbon;
 
 /**
  * Class GlassRepository
@@ -25,7 +26,6 @@ class GlassRepository
      * 建構式
      *
      * @param  GlassProduce $glass
-     * @return void
      */
     public function __construct(GlassProduce $glass) 
     {
@@ -37,7 +37,7 @@ class GlassRepository
      * 以下線時間排序
      *
      * @param string $search
-     * @return Model
+     * @return mixed
      */
     public function getGlass($search)
     {
@@ -50,20 +50,20 @@ class GlassRepository
      * 回傳今日上傳瓶號生產資訊
      * 依產線排序
      *
-     * @return Model
+     * @return mixed
      */
     public function getTodayImportData()
     {
         return $this->glass
-            ->where('date', \Carbon\Carbon::today())
+            ->where('date', Carbon::today())
             ->orderByRaw("CASE WHEN line = '1-1' THEN 0 ELSE line END");
     }
 
     /**
      * 寫入今日上傳瓶號生產資訊
      *
-     * @param Array $data
-     * @return Array
+     * @param array $data
+     * @return array
      */
     public function insertGlassData($data)
     {
