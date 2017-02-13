@@ -23,11 +23,12 @@ use App\Service\Big5Service;
 class ExcelService
 {
     use Big5Service;
+
     /**
      * 將上傳的excel資料轉成array回傳
      *
-     * @param  Illuminate\Http\UploadedFile $file
-     * @param  int  $sheet
+     * @param $file
+     * @param  int $sheet
      * @return array
      */
     public function getTableArray($file, $sheet)
@@ -39,8 +40,8 @@ class ExcelService
     /**
      * 格式化今日上傳生產資訊
      *
-     * @param  Illuminate\Http\UploadedFile $file
-     * @param  int  $sheet
+     * @param $file
+     * @param  int $sheet
      * @return array
      */
     public function getTodayArray($file, $sheet)
@@ -54,8 +55,8 @@ class ExcelService
     /**
      * 格式化今日上傳生產資料庫
      *
-     * @param  Illuminate\Http\UploadedFile $file
-     * @param  int  $sheet
+     * @param $file
+     * @param  int $sheet
      * @return array
      */
     public function getGlassArray($file, $sheet)
@@ -66,7 +67,13 @@ class ExcelService
         return $this->checkArray($data, $keys);
     }
 
-    //
+    /**
+     * 檢查瓶號資料庫欄位
+     *
+     * @param $data
+     * @param $keys
+     * @return array|null
+     */
     public function checkArray($data, $keys)
     {
         $count = count($keys) - 2;
@@ -76,6 +83,13 @@ class ExcelService
         return $this->setArray($data, $keys);
     }
 
+    /**
+     * 檢查今日上傳生產資訊欄位
+     *
+     * @param $data
+     * @param $keys
+     * @return array|null
+     */
     public function checkTodayArray($data, $keys)
     {
         $count = count($keys) - 2;
@@ -85,6 +99,13 @@ class ExcelService
         return $this->setTodayArray($data, $keys);
     }
 
+    /**
+     * 設定今日上傳生產資訊資料
+     *
+     * @param $data
+     * @param $keys
+     * @return array
+     */
     public function setTodayArray($data, $keys)
     {
         $array = [];
@@ -101,6 +122,12 @@ class ExcelService
         return $array;
     }
 
+    /**
+     * 修正小數精準度
+     *
+     * @param $value
+     * @return string
+     */
     private function setTodayQuantity($value)
     {
         if (!is_numeric($value)) {
@@ -111,9 +138,27 @@ class ExcelService
             return substr($val, 0, strlen($val) -2);
         }
         return $val;
-    } 
-    
-    //
+    }
+
+    private function setTodayQuantityfloat2($value)
+    {
+        if (!is_numeric($value)) {
+            return $value;
+        }
+        $val = number_format($value, 2);
+        if (strchr($val, '.') == '.00') {
+            return substr($val, 0, strlen($val) -3);
+        }
+        return $val;
+    }
+
+    /**
+     * 格式化寫入資料陣列
+     *
+     * @param $data
+     * @param $keys
+     * @return array
+     */
     public function setArray($data, $keys)
     {
         $array = [];
@@ -124,7 +169,7 @@ class ExcelService
             array_push($list, $today);
             array_push($list, $now);
             $list[4] = $this->setTodayQuantity($list[4]);
-            $list[5] = $this->setTodayQuantity($list[5]);
+            $list[5] = $this->setTodayQuantityfloat2($list[5]);
             $combine = array_combine($keys, $this->arrayToBig5($list));
             array_push($array, $combine);
         }

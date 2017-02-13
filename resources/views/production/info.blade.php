@@ -5,7 +5,9 @@
         @include('production.sidebar')
     </div>
     <div class="col-sm-8 col-md-10" id="glass">
-        <h3 style="margin: 0;">瓶號生產資料庫</h3><h6><small>您的IP為{{ request()->ip() }}</small></h6>
+        <h3 style="margin: 0;">瓶號生產資料庫</h3>
+        <h6><small>您的IP為{{ request()->ip() }}</small></h6>
+        <h4>資料庫搜尋範圍：2001年-{{\Carbon\Carbon::today()->format('Y')}}年{{\Carbon\Carbon::today()->format('m')}}月</h4>
         @if (isset($auth))
             <div class="row">
                 <div class="col-lg-6">
@@ -28,7 +30,7 @@
                         <td>生產數量(萬)</td>
                         <td>生產良率(%)</td>
                         <td>下線日期</td>
-                        <td>試模瓶號</td>
+                        <td>備註</td>
                     </tr>
                 </thead>
                 <tbody>
