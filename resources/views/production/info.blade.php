@@ -7,7 +7,12 @@
     <div class="col-sm-8 col-md-10" id="glass">
         <h3 style="margin: 0;">瓶號生產資料庫</h3>
         <h6><small>您的IP為{{ request()->ip() }}</small></h6>
-        <h4>資料庫搜尋範圍：2001年-{{\Carbon\Carbon::today()->format('Y')}}年{{\Carbon\Carbon::today()->format('m')}}月</h4>
+        @php
+            $date = \Carbon\Carbon::today()->modify('-1 months');
+            $year = $date->format('Y');
+            $months = $date->format('m');
+        @endphp
+        <h4>資料庫搜尋範圍：2001年-{{ $year }}年{{ $months }}月</h4>
         @if (isset($auth))
             <div class="row">
                 <div class="col-lg-6">
