@@ -168,7 +168,7 @@ class ExcelService
         foreach ($data as $list) {
             array_push($list, $today);
             array_push($list, $now);
-            $list[4] = $this->setTodayQuantity($list[4]);
+            $list[4] = $this->setTodayQuantityfloat2($list[4]);
             $list[5] = $this->setTodayQuantityfloat2($list[5]);
             $combine = array_combine($keys, $this->arrayToBig5($list));
             array_push($array, $combine);
